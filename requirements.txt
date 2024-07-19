@@ -1,0 +1,6 @@
+fastapi
+pydantic
+request
+bs4
+selenium
+uvicorn
