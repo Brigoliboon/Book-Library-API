@@ -1,4 +1,4 @@
-fastapi
+fastAPI
 pydantic
 requests
 bs4
