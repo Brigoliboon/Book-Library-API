@@ -17,6 +17,11 @@ def read_item(q: str):
         return json.loads(results)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+@app.get("/test")
+def test(q:str):
+    search = search_query(q)
+    result = search.test_website()
+    return result
 @app.get("/detail")
 def get_item_detail(file_link):
     return file_detail.get_file_detail()

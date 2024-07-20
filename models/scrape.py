@@ -33,6 +33,11 @@ class search_query:
             details['download_preview_link'] = self.extract_download_link(details['link'])
             files.append(details)
         return self.pass_data_to_json(files)
+    def test_website(self):
+        search_url = f'{self.url}/search'
+        response = requests.get(search_url,params={'q':self.q})
+        soup = BeautifulSoup(response.content, 'html.parser')
+        return soup
     @staticmethod
     def clean_data_info(data):
         while '·' in data:
