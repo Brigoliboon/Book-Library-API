@@ -1,6 +1,6 @@
 fastapi
 pydantic
-request
+requests
 bs4
 selenium
 uvicorn
