@@ -5,7 +5,7 @@ from models.scrape import file_detail
 import uvicorn
 import json
 app = FastAPI()
-@app.get("/")
+@app.post("/")
 async def read_root():
     return {"Detail": "This API is part of my side project java application named World Library developed by Boon Jefferson Brigoli."}
 @app.get("/search")
