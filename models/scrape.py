@@ -37,7 +37,7 @@ class Query:
         soup = BeautifulSoup(response.content, 'html.parser')
         files = self.extract_files(soup)
         if debug:
-            return response
+            return response.content
         return self.pass_data_to_json(files)
     @staticmethod
     def extract_files(soup: BeautifulSoup) -> list[dict]:
@@ -71,6 +71,14 @@ class Query:
         current_time = datetime.datetime.now()
         json_data = {'updated_time':current_time.isoformat(), 'results':data}
         return json.dumps(json_data)
+    def debug(self):
+        url = f'{base_url}/search'
+        try:
+            response = requests.get(url, params={'q':self.q})
+            return response.content
+        except:
+            return response.status_code
+        
 #this will get the single file information when clicked or is chosen
 class file_detail():
     def __init__(self, url) -> None:

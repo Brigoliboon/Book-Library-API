@@ -5,7 +5,7 @@ from models.scrape import file_detail
 import uvicorn
 import json
 app = FastAPI()
-@app.post("/")
+@app.get("/")
 async def read_root():
     return {"Detail": "This API is part of my side project java application named World Library developed by Boon Jefferson Brigoli."}
 @app.get("/search")
@@ -15,7 +15,6 @@ def read_item(q: str):
         results = search.get_result(debug=True)
         return json.loads(results)
     except Exception as e:
-        print(results)
         raise HTTPException(status_code=500, detail=str(e))
 @app.get("/detail")
 def get_item_detail(file_link):
@@ -27,3 +26,6 @@ def download(url:str):
         return json.loads(file)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+@app.get("/debug")
+def debug():
+    return Query(q='debugging').debug()
