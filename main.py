@@ -12,7 +12,7 @@ async def read_root():
 def read_item(q: str):
     search = Query(q)
     try:
-        results = search.get_result()
+        results = search.get_result(debug=True)
         return json.loads(results)
     except Exception as e:
         print(results)
