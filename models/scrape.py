@@ -99,5 +99,3 @@ class file_detail():
         file['description'] = container.find('div', class_="quotes").text
         file['download-link'] = container.find('a', 'download-button-link')['href']
         return file
-q = Query('nice')
-print(q.get_result())
