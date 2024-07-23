@@ -16,17 +16,6 @@ headers = {
 base_url = 'https://pdfdrive.com'
 
 #the search query object will scrape the queried results from the source
-def request_network(baseurl, params:dict|None = None):
-    url = baseurl
-    status = 200|int
-    try:
-        response = requests.get(url,params=params)
-        status = response.status_code()
-        if status == 200:
-            return response.content
-        return status
-    except:
-        return status
 class File(BaseModel):
     name: Union[str, None]
     poster: Union[str, None]
