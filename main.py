@@ -2,6 +2,7 @@
 from fastapi import FastAPI, HTTPException
 from models.scrape import Query
 from models.scrape import file_detail
+import requests
 import uvicorn
 import json
 app = FastAPI()
@@ -22,8 +23,9 @@ def get_item_detail(file_link):
 @app.get("/download")
 def download(url:str):
     try:
-        file =file_detail.download(url)
-        return json.loads(file)
+        file = file_detail.download(url)
+        response = requests.get(file, stream=True)
+        return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 @app.get("/debug")
