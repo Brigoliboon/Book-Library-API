@@ -37,7 +37,7 @@ class Query:
         soup = BeautifulSoup(response.content, 'html.parser')
         files = self.extract_files(soup)
         if debug:
-            return response.content
+            return soup
         return self.pass_data_to_json(files)
     @staticmethod
     def extract_files(soup: BeautifulSoup) -> list[dict]:
@@ -78,7 +78,8 @@ class Query:
             return response.content
         except:
             return response.status_code
-        
+class Category:
+    pass
 #this will get the single file information when clicked or is chosen
 class file_detail():
     def __init__(self, url) -> None:
