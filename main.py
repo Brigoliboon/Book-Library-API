@@ -31,3 +31,6 @@ def download(url:str):
 @app.get("/debug")
 def debug():
     return Query(q='debugging').debug()
+@app.get("/v2/search")
+def search(*params):
+    pass

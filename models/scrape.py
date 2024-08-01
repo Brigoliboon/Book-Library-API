@@ -72,11 +72,10 @@ class Query:
         json_data = {'updated_time':current_time.isoformat(), 'results':data}
         return json.dumps(json_data)
     def debug(self):
-        url = f'{base_url}/search'
+        url = f'{base_url}'
         try:
-            response = requests.get(url, params={'q':self.q})
-            soup = BeautifulSoup(response.content, 'html.parser')
-            return soup
+            response = requests.get(url)
+            return response.content
         except:
             return response.status_code
 #retrieves list of ebooks from specified categories
