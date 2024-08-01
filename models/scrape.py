@@ -6,7 +6,7 @@ import datetime
 import requests
 import time
 import json
-#scrape content from requested network
+#global values
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:95.0) Gecko/20100101 Firefox/95.0',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -75,9 +75,11 @@ class Query:
         url = f'{base_url}/search'
         try:
             response = requests.get(url, params={'q':self.q})
-            return response.content
+            soup = BeautifulSoup(response.content, 'html.parser')
+            return soup
         except:
             return response.status_code
+#retrieves list of ebooks from specified categories
 class Category:
     pass
 #this will get the single file information when clicked or is chosen
