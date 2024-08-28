@@ -8,7 +8,7 @@ import json
 app = FastAPI()
 @app.get("/")
 async def read_root():
-    return {"Detail": "This API is part of my side project java application named World Library developed by Boon Jefferson Brigoli."}
+    return {"Detail": "This API is part of a side project for java application named World Library and is developed by Boon Jefferson Brigoli.","Debug function":"/debug"}
 @app.get("/search")
 def read_item(q: str):
     search = Query(q)
@@ -30,7 +30,7 @@ def download(url:str):
         raise HTTPException(status_code=500, detail=str(e))
 @app.get("/debug")
 def debug():
-    return Query(q='debugging').debug()
+    return Query(q='').debug()
 @app.get("/v2/search")
 def search(*params):
-    pass
+    return None

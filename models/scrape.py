@@ -40,7 +40,7 @@ class Query:
             return soup
         return self.pass_data_to_json(files)
     @staticmethod
-    def extract_files(soup: BeautifulSoup) -> list[dict]:
+    def extract_files(soup: BeautifulSoup, version:int=1) -> list[dict]:
         files = []
         table = soup.find('div', attrs={'class': 'files-new'}).ul
         for item in table.findAll('li'):
@@ -55,7 +55,10 @@ class Query:
                 'download_preview_link': Query._extract_download_link(file_container_right.a['href'])
             }
             files.append(file_data)
-        return files
+        if version is 1:
+            return files
+        else:
+            return files
     @staticmethod
     def clean_data_info(data:list):
         while '·' in data:
