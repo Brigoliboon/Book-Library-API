@@ -13,7 +13,7 @@ async def read_root():
 def read_item(q: str):
     search = Query(q)
     try:
-        results = search.get_result(debug=True)
+        results = search.get_result(debug=False)
         return json.loads(results)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

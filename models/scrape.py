@@ -31,13 +31,11 @@ class Query:
         self.searchin = searchin
         self.em = em
         
-    def get_result(self, debug:bool):
+    def get_result(self):
         search_url = f'{base_url}/search'
         response = requests.get(search_url,headers=headers, params={'q': self.q, 'pagecount':self.pagecount, 'pubyear':self.pubyear, 'searchin':self.searchin, 'em':self.em})
         soup = BeautifulSoup(response.content, 'html.parser')
         files = self.extract_files(soup)
-        if debug:
-            return soup
         return self.pass_data_to_json(files)
     @staticmethod
     def extract_files(soup: BeautifulSoup, version:int=1) -> list[dict]:
